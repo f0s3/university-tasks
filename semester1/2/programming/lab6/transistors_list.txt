@@ -1,3 +1,0 @@
-kt201bm n-p-n 10A 10V h21e 10MHz
-kt201am n-p-n 20A 20V h21e 10MHz
-kt201gm p-n-p 10A 10V h21e 10MHz
