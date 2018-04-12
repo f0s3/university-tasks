@@ -11,3 +11,4 @@ Begin
     result := (b*h+a*h)*2 + a*b;
     writeln(result);
 End.
+
