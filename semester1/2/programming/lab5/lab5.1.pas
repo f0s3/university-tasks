@@ -1,39 +1,49 @@
-program lab5_1;
+п»їprogram lab5_1;
 uses crt;
 const gazetaPrice = 1;
       zhurnalPrice = 2;
 var clientChoice, i,counter,oneMoreItem,money,suggestionAnswer:integer;
-    cart:array [1..10] of string;
+    cart:array[1..10] of string;
 Begin
     i := 1;
     writeln('eKiosk v.0.1.');
     writeln;
-    write('Введiть грошi: ');
+    write('Р’РІРµРґiС‚СЊ РіСЂРѕС€i: ');
     readln(money);
     if (money >= 1) AND (money < 2) then begin
-        writeln('Газета - 1 UAH.');
-        writeln('Купити за 1 UAH?');
-        writeln('1.Так');
-        writeln('2.Ні');
+        writeln('Р“Р°Р·РµС‚Р° - 1 UAH.');
+        writeln('РљСѓРїРёС‚Рё Р·Р° 1 UAH?');
+        writeln('1.РўР°Рє');
+        writeln('2.РќС–');
         write('>: ');
         read(clientChoice);
         case clientChoice of 
             1:money := money - 1;
-            2:writeln('Не вистачає грошей.');
+            2:writeln('РќРµ РІРёСЃС‚Р°С‡Р°С” РіСЂРѕС€РµР№.');
         end;
     end
-    else if (money>=2) then begin
-        writeln('1.Газета - 1 UAH.');
-        writeln('2.Журнал - 2 UAH');
+    else if (money >= 2) then begin
+        writeln('1.Р“Р°Р·РµС‚Р° - 1 UAH.');
+        writeln('2.Р–СѓСЂРЅР°Р» - 2 UAH');
         write('>: ');
         read(clientChoice);
         case clientChoice of
-            1:money := money - 1;cart[i] := 'Газета';i += 1;
-            2:if (money >=2) then begin money := money - 2;cart[i] := 'Журнал';i += 1; end;
+            1:
+                money := money - 1;
+                cart[i] := 'Р“Р°Р·РµС‚Р°';
+                i := i + 1;
+                break;
+            2:
+                if (money >=2) then begin 
+                    money := money - 2;
+                    cart[i] := 'Р–СѓСЂРЅР°Р»';
+                    i += 1;
+                end;
+                break;
         end;
     end;
     for counter := 1 to 10 do begin 
-        writeln('Ваш(i) товар(и): ',cart[counter]);
+        writeln('Р’Р°С€(i) С‚РѕРІР°СЂ(Рё): ',cart[counter]);
         if (cart[counter+1] = '') then break;
     end;
 End.
