@@ -1,4 +1,4 @@
-Program lab4_1;
+﻿Program lab4_1;
 function f(x:real):real;
 begin
   f := x;
@@ -21,5 +21,5 @@ begin
 end;
  
 begin
-  writeln(integralCalculate(0,1,0.01));
+  writeln(integralCalculate(0,1,0.01):6:3);
 end.

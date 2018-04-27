@@ -1,6 +1,6 @@
-Program lab4_2;
+﻿Program lab4_2;
 uses crt;
-var res,a,b,c:integer;
+var res,a,b,c:real;
 procedure max(first,second:integer;var max:integer);
 begin if(first > second) then max := first else max := second; end;
 Begin
@@ -12,6 +12,6 @@ read(b);
 writeln();
 Write('c = ');
 read(c);
-res := (max(c, a+b) + res(a,b+c))/(1 + max(a+b*c,b+a*c,15));
+res := (max(c, a+b) + max(a,b+c))/(1 + max(a+b*c,b+a*c));
 Writeln('Result: ',res);
 End.
