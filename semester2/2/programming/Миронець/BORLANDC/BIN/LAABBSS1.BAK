@@ -1,0 +1,18 @@
+#include<math.h>
+#include<conio.h>
+#include<iostream.h>
+#include<stdlib.h>
+#include<stdio.h>
+int main()
+{clrscr();
+float u,s;int unsigned i;
+const float e=2.712;
+printf("Start\n");
+printf("Vveditj s\n");
+scanf("%f",&s);
+if(s<-1) {u=tan(s)+sqrt(abs(s));i=2; printf("u dorivnjye %7.3f,za metodom %d",u,i);} else
+if (s>1.2) if ((pow(cos(s),2)-s*s)<=0) printf("Error"); else {u=pow(s,3)*log(s+pow(e,s));i=3;}
+else {u=s+log(abs(pow(cos(s),2))-s*s); i=1;printf("u dorivnjye %7.3f,za metodom %d",u,i);}
+cin>>s;
+return 0;
+}

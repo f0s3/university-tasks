@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <conio.h>
+
+void main()
+{
+
+char ch;
+
+clrscr();
+
+printf("Enter char\n");
+scanf("%c",&ch);
+
+printf("%c",ch);
+
+
+getch();
+}
