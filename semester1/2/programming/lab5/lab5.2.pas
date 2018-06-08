@@ -1,5 +1,4 @@
-Program lab5_2;
-Uses crt;
+﻿Program lab5_2;
 Type Student=record
 		surname:string[20];
 		mark1,mark2,mark3,mark4,mark5:real;

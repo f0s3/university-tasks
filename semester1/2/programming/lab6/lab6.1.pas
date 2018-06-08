@@ -1,27 +1,11 @@
-Program lab6_1;
-Uses crt;
-
+﻿Program lab6_1;
 Var transistors:array[1..10] of string;
 	tr_names:array[1..10] of string;
 	tr_info:array[1..10] of string;
 	searchQuery:string;
 	f:text;
 	menuChoice,lines_count,i:integer;
-
-Label mainmenu,byCurrent,byTension,byFreq,printComplem{,exit};
-
-procedure searchByName();
-begin
-var i:integer;
-	writeln('Enter transistor name: ');
-	readln(searchQuery);
-	if (searchQuery.length = 7) then begin
-		for i:=1 to lines_count do begin
-			if (searchQuery = tr_names[i]) then writeln(tr_info[i]);
-		end;
-	end;
-end;
-
+Label mainmenu,byName,byCurrent,byTension,byFreq,printComplem,exitLabel;
 Begin
 	//file operations
 	assign(f, 'transistors_list.txt');
@@ -31,7 +15,7 @@ Begin
 		readln(f,transistors[lines_count]);
 		tr_names[lines_count] := copy(transistors[lines_count],1,7);
 		tr_info[lines_count] := copy(transistors[lines_count],8,32);
-		lines_count := lines_count + 1; 
+		lines_count := lines_count + 1;
 	end;
 	close(f);
 	lines_count := lines_count - 1;
@@ -48,7 +32,7 @@ Begin
 	write('>:');
 	read(menuChoice);
 
-	if (menuChoice = 1) then searchByName()
+	if (menuChoice = 1) then goto byName
 	else if (menuChoice = 2) then //goto byCurrent
 	else if (menuChoice = 3) then //goto byTension
 	else if (menuChoice = 4) then //goto byFreq
@@ -60,7 +44,17 @@ Begin
 		writeln;
 		goto mainmenu;
 	end
-	else if (menuChoice = 0) then //goto exit;
+	else if (menuChoice = 0) then goto exitLabel;
+	//1.byName
+	byName:
+	write('Enter transistor name: ');
+	read(searchQuery);
+	write(searchQuery);
+	if (searchQuery.length = 7) then begin
+		for i:=1 to lines_count do begin
+			if (searchQuery = tr_names[i]) then writeln(tr_info[i]);
+		end;
+	end;
 
 	//2.byCurrent
 	//byCurrent:writeln('byCurrent');
@@ -75,5 +69,5 @@ Begin
 	//printComplem:writeln('printComplem');
 
 	//0.exit
-	//exit:
+	exitLabel:
 End.
