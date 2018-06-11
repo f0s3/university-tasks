@@ -1,4 +1,5 @@
 ﻿Program lab6_1;
+Uses crt;
 Var transistors:array[1..10] of string;
 	tr_names:array[1..10] of string;
 	tr_info:array[1..10] of string;
@@ -6,6 +7,17 @@ Var transistors:array[1..10] of string;
 	f:text;
 	menuChoice,lines_count,i:integer;
 Label mainmenu,byName,byCurrent,byTension,byFreq,printComplem,exitLabel;
+
+procedure byNameTest(input:string);
+var i:integer;
+begin
+	if (searchQuery.length = 7) then begin
+		for i:=1 to lines_count do begin
+			if (searchQuery = tr_names[i]) then writeln(tr_info[i]);
+		end;
+	end;
+end;
+
 Begin
 	//file operations
 	assign(f, 'transistors_list.txt');
@@ -47,15 +59,10 @@ Begin
 	else if (menuChoice = 0) then goto exitLabel;
 	//1.byName
 	byName:
-	write('Enter transistor name: ');
-	read(searchQuery);
-	write(searchQuery);
-	if (searchQuery.length = 7) then begin
-		for i:=1 to lines_count do begin
-			if (searchQuery = tr_names[i]) then writeln(tr_info[i]);
-		end;
-	end;
-
+	  write('Enter transistor name: ');
+	  read(searchQuery);
+	  byNameTest(searchQuery);
+	  
 	//2.byCurrent
 	//byCurrent:writeln('byCurrent');
 
