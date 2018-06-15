@@ -3,9 +3,9 @@ Uses crt;
 Var transistors:array[1..10] of string;
 	tr_names:array[1..10] of string;
 	tr_info:array[1..10] of string;
-	searchQuery:string;
 	f:text;
 	menuChoice,lines_count,i:integer;
+	searchQuery:string;
 Label mainmenu,byName,byCurrent,byTension,byFreq,printComplem,exitLabel;
 
 procedure byNameTest(input:string);
@@ -44,7 +44,11 @@ Begin
 	write('>:');
 	read(menuChoice);
 
-	if (menuChoice = 1) then goto byName
+	if (menuChoice = 1) then begin
+	  write('Enter transistor name: ');
+	  read(searchQuery);
+	  byNameTest(searchQuery);
+	end
 	else if (menuChoice = 2) then //goto byCurrent
 	else if (menuChoice = 3) then //goto byTension
 	else if (menuChoice = 4) then //goto byFreq
@@ -58,10 +62,6 @@ Begin
 	end
 	else if (menuChoice = 0) then goto exitLabel;
 	//1.byName
-	byName:
-	  write('Enter transistor name: ');
-	  read(searchQuery);
-	  byNameTest(searchQuery);
 	  
 	//2.byCurrent
 	//byCurrent:writeln('byCurrent');
