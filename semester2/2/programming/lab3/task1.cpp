@@ -3,31 +3,28 @@
 using namespace std;
 
 int main() {
-    int value, result = 1, userChoice;
+    signed long value, result = 1;
+    short userChoice;
     cout << "Enter value: ";
     cin >> value;
-	cout << "1. while" << endl;
-	cout << "2. do-while" << endl;
+	cout << "1. while (pre-conditional)" << endl;
+	cout << "2. do-while (post-conditional)" << endl;
 	cin << userChoice;
+    if ((value & 1) == 0) value--;
 	switch (userChoice) {
 		case 1:
-			if ((value & 1) == 0) value--;
-			int i = value;
-			while (i >= 1) {
-				result = result * i;
-				i -= 2;
+			while (value >= 1) {
+				result *= value;
+				value -= 2;
 			}
-			cout << result << endl;
 			break;
 		case 2:
-			if ((value & 1) == 0) value--;
-			int i = value;
 			do {
-				result = result * i;
-				i -= 2;
-			} while (i >= 1);
-			cout << result << endl;
+				result *= value;
+				value -= 2;
+			} while (value >= 1);
 			break;
 	}
+    cout << result << endl;
     return 0;
 }
