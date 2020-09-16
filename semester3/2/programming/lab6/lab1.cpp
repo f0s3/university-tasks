@@ -1,31 +1,36 @@
 #include <iostream>
 #include <cmath>
+#include <array>
 
 using namespace std;
 
 const int matrixI = 4;
 const int matrixJ = 6;
 
-int matrix[matrixI][matrixJ] = {
+struct RowSum {
+    array<int, matrixJ> *row;
+    int sum;
+};
+
+array<array<int, matrixJ>, matrixI> matrix = {{
     { 1, 5, 6, 4, 6, 3 },
     { 2, 0, 6, 3, 2, 8 },
     { 3, 5, 6,-4, 7, 1 },
-    { 4, 5, 6, 2, 2, 4 }
-};
+    { 4, 5, 6, 2, 2, 5 }
+}};
 
-
-void display(int array[matrixI][matrixJ]) {
-    for (int i = 0;i < matrixI;i++) {
-        for (int j = 0;j < matrixJ;j++) {
-            cout << "  " << array[i][j] << "  ";
+void display(array<array<int, matrixJ>, matrixI> matrix) {
+    for (auto const &row: matrix) {
+        for (auto const &elem: row) {
+            cout << "  " << elem << "  ";
         }
         cout << endl;
     }
 }
 
-bool contains(int element, int array[]) {
-    for (int i = 0;i < matrixJ;i++) {
-        if (array[i] == element) {
+bool contains(int target, array<int, matrixJ> targetArr) {
+    for (auto const &element: targetArr) {
+        if (element == target) {
             return true;
         }
     }
@@ -35,8 +40,7 @@ bool contains(int element, int array[]) {
 
 int stepOne() {
     int result = matrixJ;
-
-    int columnsToSkip[matrixJ];
+    array<int, matrixJ> columnsToSkip;
 
     for (int i = 0;i < matrixI;i++) {
         for (int j = 0;j < matrixJ;j++) {
@@ -44,7 +48,7 @@ int stepOne() {
                 continue;
 
             if (matrix[i][j] == 0) {
-                columnsToSkip[j] = j;
+                columnsToSkip.fill(j);
                 result--;
             }
         }
@@ -53,47 +57,49 @@ int stepOne() {
     return result;
 }
 
-void stepTwo() {
-    int rows[matrixI][2];
+array<array<int, matrixJ>, matrixI> stepTwo() {
+    array<RowSum, matrixI> rows;
+    int index = 0;
 
-    for (int i;i < matrixI;i++) {
+    for (auto &row: matrix) {
         int result = 0;
-        for (int j;j < matrixJ;j++) {
-            if (matrix[i][j] % 2 == 0 && j >= 0) {
-                result += matrix[i][j];
+        for (auto const &element: row) {
+            if (element % 2 == 0 && element >= 0) {
+                result += element;
             }
         }
-        rows[i] = new int*[2]{i, result};
+        RowSum toFill = { &row, result };
+        rows[index++] = toFill;
     }
 
     bool isSorted = false;
 
     while (!isSorted) {
         bool isChanged = false;
-        for (int i = 0;i < matrixI - 1;i++) {
-            if (rows[i][2] > rows[i + 1][2]){
-                int temp = rows[i];
-                rows[i] = rows[i + 1];
-                rows[i + 1] = temp;
+
+        for (int i = 0; i < matrixI - 1; i++) {
+            if (rows[i].sum > rows[i + 1].sum) {
+                swap(rows[i], rows[i + 1]);
                 isChanged = true;
             }
         }
+
         if (!isChanged) {
             isSorted = true;
         }
     }
 
-    for (int i = 0;i < matrixI;i++) {
-        for (int j = 0;j < 2;j++) {
-            cout << rows[i][j] << endl;
-        }
+    array<array<int, matrixJ>, matrixI> result;
+
+    for (int i = 0; i < matrixI; i++) {
+        result[i] = *rows[i].row;
     }
+
+    return result;
 }
 
 int main() {
     cout << "1. " << stepOne() << endl;
-    stepTwo();
-    // display(matrix);
-    // cout << "2. " << stepTwo() << endl;
+    cout << "2." << endl;
+    display(stepTwo());
 }
-
