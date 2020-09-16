@@ -30,9 +30,8 @@ void display(array<array<int, matrixJ>, matrixI> matrix) {
 
 bool contains(int target, array<int, matrixJ> targetArr) {
     for (auto const &element: targetArr) {
-        if (element == target) {
+        if (element == target)
             return true;
-        }
     }
     
     return false;
@@ -64,9 +63,8 @@ array<array<int, matrixJ>, matrixI> stepTwo() {
     for (auto &row: matrix) {
         int result = 0;
         for (auto const &element: row) {
-            if (element % 2 == 0 && element >= 0) {
+            if (element % 2 == 0 && element >= 0)
                 result += element;
-            }
         }
         RowSum toFill = { &row, result };
         rows[index++] = toFill;
@@ -84,9 +82,8 @@ array<array<int, matrixJ>, matrixI> stepTwo() {
             }
         }
 
-        if (!isChanged) {
+        if (!isChanged)
             isSorted = true;
-        }
     }
 
     array<array<int, matrixJ>, matrixI> result;

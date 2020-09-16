@@ -35,9 +35,8 @@ double getMultipliedAbsoluteValue(double *arr) {
 int getMaxPositionFromArray() {
     int result = 0;
     for (int i = 0;i < valuesLength;i++) {
-        if (abs(values[i]) > abs(values[result])) {
+        if (abs(values[i]) > abs(values[result]))
             result = i;
-        }
     }
 
     return result;
@@ -46,9 +45,8 @@ int getMaxPositionFromArray() {
 int getMinPositionFromArray() {
     int result = 0;
     for (int i = 0;i < valuesLength;i++) {
-        if (abs(values[i]) < abs(values[result])) {
+        if (abs(values[i]) < abs(values[result]))
             result = i;
-        }
     }
 
     return result;
@@ -57,9 +55,8 @@ int getMinPositionFromArray() {
 double getPartOneValue() {
     double result = 0;
     for (int i = 0;i < valuesLength;i++) {
-        if (values[i] >= 0) {
+        if (values[i] >= 0)
             result += values[i];
-        }
     }
 
     return result;
